@@ -32,11 +32,11 @@ def menu():
         lista.remove(str("objeto 1"))
 
         
-    elif (str(opcion.get())) == str(5):
+    elif (str(opcion.get())) == str(4):
        messagebox.showinfo("aviso","este mensaje es para avisar algo")
        print(lista)
     
-    elif (str(opcion.get())) == str(6):
+    elif (str(opcion.get())) == str(5):
         messagebox.showinfo("aviso","se ordenaron los objetos")
         lista.sort
 
@@ -57,9 +57,9 @@ titulo=Label(seccion1,text="2.añadir",bg="white")
 titulo.pack()
 titulo=Label(seccion1,text="3.eliminar",bg="white")
 titulo.pack()
-titulo=Label(seccion1,text="5.imprimir",bg="white")
+titulo=Label(seccion1,text="4.imprimir",bg="white")
 titulo.pack()
-titulo=Label(seccion1,text="6.ordenar",bg="white")
+titulo=Label(seccion1,text="5.ordenar",bg="white")
 titulo.pack()
 opcion=StringVar()
 opcion1= Entry(seccion1,textvariable=opcion)
