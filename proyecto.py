@@ -1,75 +1,60 @@
 
+from tkinter import * 
+from tkinter import messagebox
 
-def pedirNumeroEntero():
- 
-    correcto=False
-    num=0
-    while(not correcto):
-        try:
-            num = int(input("que desas reaizar: "))
-            correcto=True
-        except ValueError:
-            print('Error, introduce una opcion del menu')
+lista=[]
+
+def menu():
      
-    return num
- 
-salir = False
-opcion = 0
- 
-while not salir:
-    
-    
+    if (str(opcion1.get())) == str(1):
+        messagebox.showinfo("aviso","se cargo el inventario")
+  
+    elif (str(opcion.get())) == str(2):
+        messagebox.showinfo("aviso","se registro una entrada")
+        lista.append(str("objeto 1"))
+      
+        
+    elif (str(opcion.get())) == str(3):
+        messagebox.showinfo("aviso","se registro una salida")
+        lista.remove(str("objeto 1"))
 
-    print("Seleccione una opcion ingresando un numero:")
-    print ("1.cargar inventario.")
-    print ("2.Añadir.")
-    print ("3.Contar")
-    print ("4.Eliminar")
-    print ("5.Imprimir")
-    print ("6.Ordenar")
-    print ("7.Salir")
-    print ("Elige una opcion")
-    print("")
-
- 
-    opcion = pedirNumeroEntero()
-    
-    
-    if opcion == 1:
-        print("")
-        lista=[]
-        print("")
-    
-    elif opcion == 2:
-        print("") 
-        lista.append(input("ingresa el objeto: "))
-        print("")
         
-    elif opcion == 3:
-        
-        print("")
-        lista.count
-        print("")
-        
-    elif opcion == 4:
-        print("")
-        lista.remove(input("que deseas elimiar: "))
-        print("")
-        
-    elif opcion == 5:
-       print("")
+    elif (str(opcion.get())) == str(5):
+       messagebox.showinfo("aviso","este mensaje es para avisar algo")
        print(lista)
-       print("")
     
-    elif opcion ==6:
-        print("")
+    elif (str(opcion.get())) == str(6):
+        messagebox.showinfo("aviso","se ordenaron los objetos")
         lista.sort
-        print("")
+
     
-    elif opcion ==7:
-        salir = True
-        
-    else:
-        print ("Introduce un numero entre 1 y 6")
- 
-print ("Fin")
+ventana = Tk()
+ventana.title("practica 11:3 Frames")
+ventana.geometry("600x400")
+
+
+seccion1 = Frame(ventana, bg="white")
+seccion1.pack(expand=True,fill='both')
+
+titulo=Label(seccion1,text="seleccione una opcion:",bg="white")
+titulo.pack()
+titulo=Label(seccion1,text="1.cargar",bg="white")
+titulo.pack()
+titulo=Label(seccion1,text="2.añadir",bg="white")
+titulo.pack()
+titulo=Label(seccion1,text="3.eliminar",bg="white")
+titulo.pack()
+titulo=Label(seccion1,text="5.imprimir",bg="white")
+titulo.pack()
+titulo=Label(seccion1,text="6.ordenar",bg="white")
+titulo.pack()
+opcion=StringVar()
+opcion1= Entry(seccion1,textvariable=opcion)
+opcion1.pack()
+
+boton1=Button (seccion1,text="elegir",bg="white",command=menu)
+boton1.pack()
+
+   
+
+ventana.mainloop()
