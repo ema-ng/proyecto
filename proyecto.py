@@ -4,28 +4,35 @@ from tkinter import messagebox
 
 lista=[]
 
+def añadir():
+    lista.append(str("objeto 1"))
+    messagebox.showinfo("aviso","se registro una entrada")
+    
+
 def menu():
      
     if (str(opcion1.get())) == str(1):
         messagebox.showinfo("aviso","se cargo el inventario")
   
     elif (str(opcion.get())) == str(2):
+        
         ventana1 = Tk()
         ventana1.title("practica 11:3 Frames")
         ventana1.geometry("600x400")
+        
         seccion2 = Frame(ventana1, bg="white")
         seccion2.pack(expand=True,fill='both')
+        
         tituloa=Label(seccion2,text="ingresa el objeto:",bg="white")
         tituloa.pack()
+        
         opcion13=StringVar()
         opcionb= Entry(seccion2,textvariable=opcion13)
         opcionb.pack()
-        boton2=Button (seccion2,text="guardar",bg="white",command=menu)
-        boton2.pack()
         
-        messagebox.showinfo("aviso","se registro una entrada")
-        lista.append(str("objeto 1"))
-      
+        boton2=Button (seccion2,text="guardar",bg="white",command=añadir)
+        boton2.pack()
+          
         
     elif (str(opcion.get())) == str(3):
         messagebox.showinfo("aviso","se registro una salida")
@@ -33,7 +40,7 @@ def menu():
 
         
     elif (str(opcion.get())) == str(4):
-       messagebox.showinfo("aviso","este mensaje es para avisar algo")
+       
        print(lista)
     
     elif (str(opcion.get())) == str(5):
