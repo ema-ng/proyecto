@@ -1,5 +1,10 @@
 from logicapi import *
 
+conexion=logicapi()
+
+def conectar():
+    conexion.conexionBD()
+
 #ventana inventario 
 
 ventana = Tk()
@@ -47,7 +52,7 @@ fechae=Entry(inventario,textvariable=fechaentrada)
 fechae.place(x=110, y=180)
 
 
-boton=Button(inventario,text="agregar")
+boton=Button(inventario,text="agregar",command=conectar)
 boton.place(x=150, y=220)
 
 #acciones 
