@@ -55,55 +55,7 @@ fechae.place(x=110, y=180)
 boton=Button(inventario,text="agregar",command=entrada)
 boton.place(x=150, y=220)
 
-#acciones 
 
-    
-inventario1 = Frame(note,width=400,height=400)
-inventario1.pack(expand=True,fill='both')
-note.add(inventario1,text="objeto")
-
-texto=Label(inventario1,text="eliminar del inventario")
-texto.pack()
-
-
-texto=Label(inventario1,text="nombre: ")
-texto.place(x=20, y=60)
-eliminari=StringVar()
-eliminar1=Entry(inventario1,textvariable=eliminari)
-eliminar1.place(x=110, y=60)
-
-texto=Label(inventario1,text="id del objeto: ")
-texto.place(x=20, y=100)
-eliminar2=StringVar()
-elimina2=Entry(inventario1,textvariable=eliminar2)
-elimina2.place(x=110, y=100)
-
-boton=Button(inventario1,text="eliminar")
-boton.place(x=80, y=140)
-
-#buscar
-
-
-texto=Label(inventario1,text="buscar")
-texto.place(x=150, y=180)
-
-texto=Label(inventario1,text="id de objeto")
-texto.place(x=20, y=220)
-buscara=StringVar()
-buscara2= Entry(inventario1,textvariable=buscara)
-buscara2.place(x=110, y=220)
-
-texto=Label(inventario1,text="nombre")
-texto.place(x=20, y=260)
-buscara3=StringVar()
-buscara4= Entry(inventario1 ,textvariable=buscara3)
-buscara4.place(x=110, y=260)
-
-boton=Button(inventario1,text="buscar")
-boton.place(x=150, y=300)
-
-texto=Label(inventario1,text="")
-texto.place(x=20, y=310)
 
 
 
