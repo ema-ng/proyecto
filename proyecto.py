@@ -1,12 +1,6 @@
 from logicapi import *
 
 
-cliente=[]
-empleado=[]
-provedor=[]
-administrativo=[]
-
-
     
 
 # ventanas base de datos
@@ -19,23 +13,6 @@ note= ttk.Notebook(ventana)
 note.pack()
 
 #registro clientes
-
-def añadircliente():
-    a=str(nombrec.get())
-    b=int(idc.get())
-    c=str(productoc.get())
-    d=str(cantidadc.get())
-    
-    cliente.append([a,b,c,d])
-    cliente.sort()
-    
-    messagebox.showinfo("registro","registro exitoso")
-    
-    
-def buscarcliente():
-    a=int(buscarc.get())
-    b=cliente.pop(a)
-    messagebox.showinfo("buscar",f'datos del cliente"{b}"')
     
     
 clientes = Frame(note,width=400,height=400)
@@ -68,7 +45,7 @@ cantidadc=StringVar()
 cantidad1=Entry(clientes,textvariable=cantidadc)
 cantidad1.place(x=110, y=140)
 
-boton=Button(clientes,text="registrar",command=añadircliente)
+boton=Button(clientes,text="registrar")
 boton.place(x=80, y=180)
 
 #buscar clientes 
@@ -88,7 +65,7 @@ buscarc2=StringVar()
 buscar2= Entry(clientes,textvariable=buscarc2)
 buscar2.place(x=110, y=300)
 
-boton=Button(clientes,text="buscar",command=buscarcliente)
+boton=Button(clientes,text="buscar")
 boton.place(x=150, y=340)
 
 texto=Label(clientes,text="")
@@ -98,20 +75,6 @@ texto.place(x=20, y=350)
 
 #registrar empleados 
 
-def añadirempleado():
-    a=str(nombree.get())
-    b=int(ide.get())
-    c=str(areae.get())
-    
-    empleado.append([a,b,c])
-    empleado.sort()
-    
-    messagebox.showinfo("registro","registro exitoso")
-    
-def buscarempleado():
-    a=int(buscare.get())
-    b=cliente.pop(a)
-    messagebox.showinfo("buscar",f'datos del cliente"{b}"')
     
 empleados = Frame(note,width=400,height=400)
 empleados.pack(expand=True,fill='both')
@@ -136,7 +99,7 @@ areae=StringVar()
 area1=Entry(empleados,textvariable=areae)
 area1.place(x=110, y=100)
 
-boton=Button(empleados,text="registrar",command=añadirempleado)
+boton=Button(empleados,text="registrar")
 boton.place(x=80, y=140)
 
 #buscar empleados 
@@ -156,7 +119,7 @@ buscare2=StringVar()
 buscar4= Entry(empleados ,textvariable=buscare2)
 buscar4.place(x=110, y=260)
 
-boton=Button(empleados,text="buscar",command=buscarempleado)
+boton=Button(empleados,text="buscar")
 boton.place(x=150, y=300)
 
 texto=Label(empleados,text="")
@@ -165,21 +128,6 @@ texto.place(x=20, y=310)
 
 #provedores 
 
-def añadirprovedor ():
-    a=str(nombrep.get())
-    b=int(idp.get())
-    c=str(productop.get())
-    d=str(cantidadp.get())
-    
-    provedor.append([a,b,c,d])
-    provedor.sort()
-    
-    messagebox.showinfo("registro","registro exitoso")
-    
-def buscarprovedor():
-    a=int(buscarp.get())
-    b=cliente.pop(a)
-    messagebox.showinfo("buscar",f'datos del cliente"{b}"')
 
 provedores= Frame(note,width=400,height=280)
 provedores.pack(expand=True,fill='both')
@@ -210,7 +158,7 @@ cantidadp=StringVar()
 cantidad2=Entry(provedores,textvariable=cantidadp)
 cantidad2.place(x=110, y=140)
 
-boton=Button(provedores,text="registrar",command=añadirprovedor)
+boton=Button(provedores,text="registrar")
 boton.place(x=80, y=180)
 
 
@@ -232,7 +180,7 @@ buscarp2=StringVar()
 buscarp3= Entry(provedores ,textvariable=buscarp2)
 buscarp3.place(x=110, y=300)
 
-boton=Button(provedores,text="buscar",command=buscarprovedor)
+boton=Button(provedores,text="buscar")
 boton.place(x=150, y=340)
 
 texto=Label(provedores,text="")
@@ -240,21 +188,6 @@ texto.place(x=20, y=30)
 
 #administrativos 
 
-def añadiradmin ():
-    
-    a=str(nombrea.get())
-    b=int(ida.get())
-    c=str(areaa.get())
-    
-    administrativo.append([a,b,c])
-    administrativo.sort()
-    
-    messagebox.showinfo("registro","registro exitoso")
-    
-def buscaradmin():
-    a=int(buscara.get())
-    b=cliente.pop(a)
-    messagebox.showinfo("buscar",f'datos del cliente"{b}"')
     
 administrativos = Frame(note,width=400,height=280)
 administrativos.pack(expand=True,fill='both')
@@ -279,7 +212,7 @@ areaa=StringVar()
 area2=Entry(administrativos,textvariable=areaa)
 area2.place(x=110, y=100)
 
-boton=Button(administrativos,text="registrar",command=añadiradmin)
+boton=Button(administrativos,text="registrar")
 boton.place(x=80, y=140)
 
 
@@ -300,7 +233,7 @@ buscara3=StringVar()
 buscara4= Entry(administrativos ,textvariable=buscara3)
 buscara4.place(x=110, y=260)
 
-boton=Button(administrativos,text="buscar",command=buscaradmin)
+boton=Button(administrativos,text="buscar")
 boton.place(x=150, y=300)
 
 texto=Label(administrativos,text="")

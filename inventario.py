@@ -1,23 +1,5 @@
 from logicapi import *
 
-
-objeto=[]
-
-def registrarobj():
-    
-    a=str(nombrei.get())
-    b=str(areai.get())
-    c=str(noserie.get())
-    d=str(cantidadi.get())
-    e=str(fechaentrada.get())
-    
-    objeto.append([a,b,c,d,e])
-    objeto.sort()
-    
-    messagebox.showinfo("registro","registro exitoso")
-    print(objeto)
- 
-
 #ventana inventario 
 
 ventana = Tk()
@@ -65,17 +47,11 @@ fechae=Entry(inventario,textvariable=fechaentrada)
 fechae.place(x=110, y=180)
 
 
-boton=Button(inventario,text="agregar",command=registrarobj)
+boton=Button(inventario,text="agregar")
 boton.place(x=150, y=220)
 
 #acciones 
 
-def  eliminar ():
-    print(objeto)
-    a=int(eliminar2.get())
-    objeto.pop(a)
-    print(objeto)
-    messagebox.showinfo("elimnar","saida registrada")
     
 inventario1 = Frame(note,width=400,height=400)
 inventario1.pack(expand=True,fill='both')
@@ -97,16 +73,11 @@ eliminar2=StringVar()
 elimina2=Entry(inventario1,textvariable=eliminar2)
 elimina2.place(x=110, y=100)
 
-boton=Button(inventario1,text="eliminar",command=eliminar)
+boton=Button(inventario1,text="eliminar")
 boton.place(x=80, y=140)
 
 #buscar
 
-    
-def buscarobjeto():
-    a=int(buscara.get())
-    b=objeto.pop(a)
-    messagebox.showinfo("buscar",f'datos del cliente"{b}"')
 
 texto=Label(inventario1,text="buscar")
 texto.place(x=150, y=180)
@@ -123,7 +94,7 @@ buscara3=StringVar()
 buscara4= Entry(inventario1 ,textvariable=buscara3)
 buscara4.place(x=110, y=260)
 
-boton=Button(inventario1,text="buscar",command=buscarobjeto)
+boton=Button(inventario1,text="buscar")
 boton.place(x=150, y=300)
 
 texto=Label(inventario1,text="")
