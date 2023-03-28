@@ -8,10 +8,10 @@ def guardarc():
    acciones.guardarcliente(nombrec.get(),productoc.get(),cantidadc.get())
    
 def guardare():
-   acciones.guardarempleado()
+   acciones.guardarempleado(nombree.get(),areae.get(),puestoe.get())
    
 def guardarp():
-   acciones.guardarprovedor()
+   acciones.guardarprovedor(nombrep.get(),productop.get(),cantidadp.get())
 
 
 # ventanas base de datos

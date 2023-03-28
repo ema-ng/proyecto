@@ -1,9 +1,9 @@
 from logicapi import *
 
-conexion=logicapi()
+conexion=logicap()
 
-def conectar():
-    conexion.conexionBD()
+def entrada():
+    conexion.registraentrada(nombrei.get(),areai.get(),noserie.get(),cantidadi.get(),fechaentrada.get())
 
 #ventana inventario 
 
@@ -52,7 +52,7 @@ fechae=Entry(inventario,textvariable=fechaentrada)
 fechae.place(x=110, y=180)
 
 
-boton=Button(inventario,text="agregar",command=conectar)
+boton=Button(inventario,text="agregar",command=entrada)
 boton.place(x=150, y=220)
 
 #acciones 

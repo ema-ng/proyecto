@@ -74,7 +74,7 @@ class logicap:
            
            cursor=conx.cursor()
            datos=(nom2,pro2,can2)
-           qrisert="insert into provedores (nombre,producto,cantidad,) values (?,?,?)"
+           qrisert="insert into provedores (nombrep,productop,cantidadp) values (?,?,?)"
            
            cursor.execute(qrisert,datos)
            conx.commit()
@@ -83,4 +83,20 @@ class logicap:
            
            
            
-    
+    def registraentrada (self,nom3,area2,serie,can3,fecha):
+        
+       conx=self.conexionBD()
+       
+       if(nom3 == "" or area2=="" or serie =="" or can3 =="" or fecha =="" ):
+           messagebox.showwarning("aviso","fomulario incompleto")
+           
+       else:
+           
+           cursor=conx.cursor()
+           datos=(nom3,area2,serie,can3,fecha)
+           qrisert="insert into entradas (nombre,area,serie,cantidad,fecha) values (?,?,?,?,?)"
+           
+           cursor.execute(qrisert,datos)
+           conx.commit()
+           conx.close
+           messagebox.showinfo("exito","usuario guardado")
