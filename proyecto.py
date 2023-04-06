@@ -1,20 +1,28 @@
 from logicapi import *
+import threading
 
+conexion=logicap()
 
-acciones=logicap()
-
-
-def guardarc():
-   acciones.guardarcliente(nombrec.get(),productoc.get(),cantidadc.get())
-   
-def guardare():
-   acciones.guardarempleado(nombree.get(),areae.get(),puestoe.get())
-   
-def guardarp():
-   acciones.guardarprovedor(nombrep.get(),productop.get(),cantidadp.get())
-
-
-# ventanas base de datos
+def entrada():
+    conexion.registraentrada(nombrei.get(),areai.get(),noserie.get(),cantidadi.get(),fechaentrada.get())
+def formato():
+    return conexion.consulta_entradas()
+def actualizar_entradas():
+    for uno in entradas.get_children():
+            entradas.delete(uno)
+    datose=formato()
+    for m, row in enumerate(datose):
+            entradas.insert("", "end", text=str(m+1), values=row)
+    if datose==[]:
+        messagebox.showinfo("Error","La Base de Datos esta vacia.")
+def nuev3() :
+    prueba5=threading.Thread(target=actualizar_entradas)
+    prueba5.start()
+def eliminacion():
+    conexion.eliminar_entradas(id1.get())
+def actuali():
+    conexion.Actualizar_Entradas(i.get(),n.get(),a.get(),s.get(),c.get(),f.get())
+#ventana inventario 
 
 ventana = Tk()
 ventana.title("base de datos Frames")
@@ -24,102 +32,96 @@ note= ttk.Notebook(ventana)
 note.pack()
 
 
-#registro clientes
-    
-    
-clientes = Frame(note,width=400,height=400)
-clientes.pack(expand=True,fill='both')
-note.add(clientes,text="clientes")
-texto=Label(clientes,text="registro de clientes")
+# registrar entrada
 
+inventario = Frame(note,width=400,height=400)
+inventario.pack(expand=True,fill='both')
+note.add(inventario,text="registrar en el inventario")
 
-texto=Label(clientes,text="nombre")
+texto=Label(inventario,text="nombre")
 texto.place(x=20, y=20)
-nombrec=StringVar()
-nombre1=Entry(clientes,textvariable=nombrec)
-nombre1.place(x=110, y=20)
+nombrei=StringVar()
+nombre5=Entry(inventario,textvariable=nombrei)
+nombre5.place(x=110, y=20)
 
-texto=Label(clientes,text="id de producto")
+texto=Label(inventario,text="area")
 texto.place(x=20, y=60)
-productoc=StringVar()
-producto1=Entry(clientes,textvariable=productoc)
-producto1.place(x=110, y=60)
+areai=StringVar()
+areai1=Entry(inventario,textvariable=areai)
+areai1.place(x=110, y=60)
 
-texto=Label(clientes,text="cantidad:")
+texto=Label(inventario,text="no. de serie")
 texto.place(x=20, y=100)
-cantidadc=StringVar()
-cantidad1=Entry(clientes,textvariable=cantidadc)
-cantidad1.place(x=110, y=100)
+noserie=StringVar()
+noserie1=Entry(inventario,textvariable=noserie)
+noserie1.place(x=110, y=100)
 
-boton=Button(clientes,text="registrar",command=guardarc)
-boton.place(x=150, y=140)
+texto=Label(inventario,text="cantidad")
+texto.place(x=20, y=140)
+cantidadi=StringVar()
+cantidad1=Entry(inventario,textvariable=cantidadi)
+cantidad1.place(x=110, y=140)
 
-
-
-
-
-#registrar empleados 
-
-    
-empleados = Frame(note,width=400,height=400)
-empleados.pack(expand=True,fill='both')
-note.add(empleados,text="empleados")
-texto=Label(empleados,text="registro de empleados")
-
-texto=Label(empleados,text="nombre")
-texto.place(x=20, y=20)
-nombree=StringVar()
-nombre2=Entry(empleados,textvariable=nombree)
-nombre2.place(x=110, y=20)
-
-texto=Label(empleados,text="area")
-texto.place(x=20, y=60)
-areae=StringVar()
-area1=Entry(empleados,textvariable=areae)
-area1.place(x=110, y=60)
-
-texto=Label(empleados,text="puesto")
-texto.place(x=20, y=100)
-puestoe=StringVar()
-puesto1=Entry(empleados,textvariable=puestoe)
-puesto1.place(x=110, y=100)
-
-boton=Button(empleados,text="registrar",command=guardare)
-boton.place(x=150, y=140)
+texto=Label(inventario,text="fecha entrada")
+texto.place(x=20, y=180)
+fechaentrada=StringVar()
+fechae=Entry(inventario,textvariable=fechaentrada)
+fechae.place(x=110, y=180)
 
 
-#provedores 
+boton=Button(inventario,text="agregar",command=entrada)
+boton.place(x=150, y=220)
 
-
-provedores= Frame(note,width=400,height=280)
-provedores.pack(expand=True,fill='both')
-note.add(provedores,text="provedores")
-texto=Label(provedores,text="registrar provedores")
-
-texto=Label(provedores,text="nombre")
-texto.place(x=20, y=20)
-nombrep=StringVar()
-nombre3=Entry(provedores,textvariable=nombrep)
-nombre3.place(x=110, y=20)
-
-texto=Label(provedores,text="id productos")
-texto.place(x=20, y=60)
-productop=StringVar()
-producto2=Entry(provedores,textvariable=productop)
-producto2.place(x=110, y=60)
-
-texto=Label(provedores,text="cantidad")
-texto.place(x=20, y=100)
-cantidadp=StringVar()
-cantidad2=Entry(provedores,textvariable=cantidadp)
-cantidad2.place(x=110, y=100)
-
-boton=Button(provedores,text="registrar",command=guardarp)
-boton.place(x=150, y=140)
-
-
-
-
+#consultar inventario
+consulta = Frame(note,width=400,height=400)
+consulta.pack(expand=True,fill='both')
+note.add(consulta,text="Consultar Inventario")
+col=('id','nombre', 'area','serie','cantidad','fecha')
+entradas=ttk.Treeview(consulta,col=col ,show='headings' ,height=20)
+entradas.heading('id', text='ID',anchor=CENTER)
+entradas.heading('nombre',text='Nombre',anchor=CENTER)
+entradas.heading('area',text='Area',anchor=CENTER)
+entradas.heading('serie', text='Serie',anchor=CENTER)
+entradas.heading('cantidad', text='Cantidad',anchor=CENTER)
+entradas.heading('fecha', text='Fechaa',anchor=CENTER)
+entradas.pack(padx=10, pady=10)
+datose=formato()
+for m, row in enumerate(datose):
+    entradas.insert('', 'end' , text=str(m+1), values =row)
+    if datose==[]:
+        messagebox.showinfo("Error","La Base de Datos esta vacia.")
+botonconsulentradas=Button(consulta,text="consultar",command=nuev3).pack()
+#eliminar entradas
+elime = Frame(note,width=400,height=400)
+elime.pack(expand=True,fill='both')
+note.add(elime,text="Eliminar Entrada")
+titulo=Label(elime,text="Ingrese ID a Eliminar").pack()
+id1=StringVar()
+id11=Entry(elime,textvariable=id1).pack()
+Botonelimi=Button(elime,text="Eliminar Entrada",command=eliminacion).pack()
+#Actualizar datos
+actu = Frame(note,width=400,height=400)
+actu.pack(expand=True,fill='both')
+note.add(actu,text="Actualizar Entrada")
+texto=Label(actu,text="ingrese los datos").pack()
+texto=Label(actu,text="Id a Actualizar").pack()
+i=StringVar()
+ii=Entry(actu,textvariable=i).pack()
+texto=Label(actu,text="Nombre a Actualizar").pack()
+n=StringVar()
+nn=Entry(actu,textvariable=n).pack()
+texto=Label(actu,text="Area a Actualizar").pack()
+a=StringVar()
+aa=Entry(actu,textvariable=a).pack()
+texto=Label(actu,text="Serie a Actualizar").pack()
+s=StringVar()
+ss=Entry(actu,textvariable=s).pack()
+texto=Label(actu,text="Cantidad a Actualizar").pack()
+c=StringVar()
+cc=Entry(actu,textvariable=c).pack()
+texto=Label(actu,text="Fecha a Actualizar").pack()
+f=StringVar()
+ff=Entry(actu,textvariable=f).pack()
+botonactu=Button(actu,text="Actualizar",command=actuali).pack()
 
 ventana.mainloop()
-
