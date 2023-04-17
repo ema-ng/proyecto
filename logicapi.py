@@ -27,10 +27,12 @@ class logicap:
     def guardarcliente (self,nom,pro,can):
         
        conx=self.conexionBD()
-       
-       if(nom == "" or pro=="" or can ==""):
-           messagebox.showwarning("aviso","fomulario incompleto")
-           
+       if (nom == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Nombre")
+       if (pro == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Producto")
+       if (can == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Cantidad")    
        else:
            
            cursor=conx.cursor()
@@ -46,9 +48,12 @@ class logicap:
         
        conx=self.conexionBD()
        
-       if(nom1 == "" or area==""  or pue==""):
-           messagebox.showwarning("aguas","fomulario incompleto")
-           
+       if(nom1 == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Nombre")
+       if (area == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Area")
+       if (pue == "" ):
+           messagebox.showwarning("aviso","falto ingresar el dato Puesto")        
        else:
            
            cursor=conx.cursor()
@@ -66,8 +71,14 @@ class logicap:
         
        conx=self.conexionBD()
        
-       if(nom2 == "" or pro2=="" or can2 ==""):
-           messagebox.showwarning("aguas","fomulario incompleto")
+       if(nom2 == ""):
+           messagebox.showwarning("Aviso","Falto ingresar el dato Nombre")
+       if(pro2 == ""):
+           messagebox.showwarning("Aviso","Falto ingresar el dato Producto")
+       if(can2 == ""):
+           messagebox.showwarning("Aviso","Falto ingresar el dato Cantidad")
+            
+            
            
        else:
            
@@ -86,8 +97,16 @@ class logicap:
         
        conx=self.conexionBD()
        
-       if(nom3 == "" or area2=="" or serie =="" or can3 =="" or fecha =="" ):
-           messagebox.showwarning("aviso","fomulario incompleto")
+       if(nom3 == ""):
+           messagebox.showwarning("aviso","falto ingresar el dato Nombre")
+       if(area2 == ""):
+           messagebox.showwarning("aviso","falto ingresar el dato Area")
+       if(serie == ""):
+           messagebox.showwarning("aviso","falto ingresar el dato Noｺ serie")
+       if(can3 == ""):
+           messagebox.showwarning("aviso","falto ingresar el dato Cantidad")   
+       if(fecha == ""):
+           messagebox.showwarning("aviso","falto ingresar el dato Fecha") 
            
        else:
            
@@ -138,15 +157,32 @@ class logicap:
     def eliminar_registro(self,area,id):
         conx=self.conexionBD()
         cursor=conx.cursor()
-        if area == "clientes":
-            cursor.execute("DELETE FROM clientes WHERE id=?", (id,))
-            messagebox.askyesno("Alerta","Desea borrar registro de la bd")
-        elif area == "empleados":
-            cursor.execute("DELETE FROM empleados WHERE id=?", (id,))
-            messagebox.askyesno("Alerta","Desea borrar registro de la bd")
-        elif area == "provedores":
-            cursor.execute("DELETE FROM provedores WHERE id=?", (id,))
-            messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+        if area == "":
+            messagebox.showinfo("Aviso","Falto ingresar el Area")
+        if id == "":
+            messagebox.showinfo("Aviso","Falto ingresar el ID")
+        if (area == "clientes"):
+            res=messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+            if res:
+                cursor.execute("DELETE FROM clientes WHERE id=?", (id,))
+                messagebox.showinfo("Confirmacion","Se a eliminado correctamente de la BD")
+            else:
+                pass
+        elif (area == "empleados"):
+            res=messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+            if res:
+                cursor.execute("DELETE FROM empleados WHERE id=?", (id,))
+                messagebox.showinfo("Confirmacion","Se a eliminado correctamente de la BD")
+            else:
+                pass
+            
+        elif (area == "provedores"):
+            res=messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+            if res:
+                cursor.execute("DELETE FROM provedores WHERE id=?", (id,))
+                messagebox.showinfo("Confirmacion","Se a eliminado correctamente de la BD")
+            else:
+                pass
         else:
             pass
             
@@ -224,8 +260,12 @@ class logicap:
     def eliminar_entradas(self,id):
         conx=self.conexionBD()
         cursor=conx.cursor()
-        cursor.execute("DELETE FROM entradas WHERE id=?", (id,))
-        messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+        resp=messagebox.askyesno("Alerta","Desea borrar registro de la bd")
+        if resp:
+            cursor.execute("DELETE FROM entradas WHERE id=?", (id,))
+            messagebox.showinfo("Confirmacion","Se a eliminado correctamente de la BD")
+        else:
+            pass
         conx.commit()
         conx.close()
     def Actualizar_Entradas(self,id,nombre,area,serie,cantidad,fecha):
@@ -249,3 +289,61 @@ class logicap:
                 conx.close()
             except sqlite3.OperationalError:
                 messagebox.showerror("Error","no se pudieron realizar los cambios")
+    def buscarempleado(self,area,id):
+        conx=self.conexionBD()
+        if(area == ""):
+            messagebox.showwarning("Cuidado","El ID es invalido o esta vacio")
+            conx.close()
+        if id == "":
+            messagebox.showinfo("Aviso","Falto ingresar el ID")
+            conx.close()
+        else:
+            try:
+                if(area == "clientes"):
+                    if(id == ""):
+                        messagebox.showinfo("Error","Usuario no existe")
+                        conx.close()
+                        
+                    else:   
+                        cursor=conx.cursor()
+                        selectQry="select * from clientes where id="+id
+                        cursor.execute(selectQry)
+                        rsUsuario=cursor.fetchall()
+                        conx.close()
+                        return rsUsuario
+                if(area== "empleados"):
+                    if(id == ""):
+                        messagebox.showinfo("Error","Usuario no existe")
+                        conx.close()
+                    else:   
+                        cursor=conx.cursor()
+                        selectQry="select * from empleados where id="+id
+                        cursor.execute(selectQry)
+                        rsUsuario=cursor.fetchall()
+                        conx.close()
+                        return rsUsuario
+                if(area == "provedores"):
+                    if(id == ""):
+                        messagebox.showinfo("Error","Usuario no existe")
+                        conx.close()
+                    else:   
+                        cursor=conx.cursor()
+                        selectQry="select * from provedores where id="+id
+                        cursor.execute(selectQry)
+                        rsUsuario=cursor.fetchall()
+                        conx.close()
+                        return rsUsuario
+            except sqlite3.OperationalError:
+                print("Error de consulta")
+    def buscarentrada(self,id):
+        conx=self.conexionBD()
+        if (id == ""):
+            messagebox.showerror("Error","No se encontro en BD")
+            conx.close()
+        else:
+            cursor=conx.cursor()
+            selectQry="select * from entradas where id="+id
+            cursor.execute(selectQry)
+            rsUsuario1=cursor.fetchall()
+            conx.close()
+            return rsUsuario1
